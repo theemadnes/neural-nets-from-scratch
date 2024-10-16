@@ -39,6 +39,9 @@ class Perceptron:
                 update = self.lr * (y_[idx] - y_predicted)
                 self.weights += update * x_i
                 self.bias += update
+                print(self.weights)
+                print(self.bias)
+
 
     def predict(self, X):
         """
@@ -63,13 +66,16 @@ class Perceptron:
 # Example usage:
 if __name__ == "__main__":
     # Generate some sample data
-    X = np.array([[1, 2], [2, 3], [3, 1], [4, 2]])
-    y = np.array([0, 1, 0, 1])
+    X = np.array([[1, 2, 6, 5], [2, 1, 2, 1], [2, 3, 2, 4], [3, 1, 4, 4], [4, 2, 1, 1], [4, 5, 1, 2], [3, 5, 2, 1]])
+    y = np.array([1, 1, 0, 1, 0, 1, 0, 1])
 
     # Create and train the Perceptron
-    perceptron = Perceptron(learning_rate=0.1, n_iters=100)
+    perceptron = Perceptron(learning_rate=0.1, n_iters=10000)
     perceptron.fit(X, y)
 
+    # New data for predictions
+    X_new = np.array([[1,2,3,4], [4,3,2,1], [5,4,3,2], [0,5,4,3], [1,6,5,4]])
+
     # Make predictions
-    predictions = perceptron.predict(X)
+    predictions = perceptron.predict(X_new)
     print("Predictions:", predictions)
